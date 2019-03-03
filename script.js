@@ -9,6 +9,31 @@ const decrypt = (crypted, password) => {
   catch (e) { throw new Error('Data could not be decrypted.') }
 }
 
+// Read the content from the input and crypt/decrypt to the output
+const setup = () => {
+  const content = el.input.value
+  el.error.innerText = ''
+  if (content === '') {
+    el.copyOutput.style.visibility = 'hidden'
+    return
+  }
+  el.copyOutput.style.visibility = 'visible'
+
+  const password = el.password.value
+  const action = el.action.value
+
+  if (action === 'encrypt') el.output.value = encrypt(content, password)
+  else if (action === 'decrypt') {
+    try {
+      el.output.value = decrypt(content, password)
+    }
+    catch (err) {
+      el.error.innerText = err.message
+      console.error(err)
+    }
+  }
+}
+
 const delay = ms => new Promise(res => setTimeout(res, ms))
 
 const cachedActionKey = 'crypto-action'
@@ -36,30 +61,11 @@ el.action.addEventListener('change', e => {
   el.error.innerText = ''
 })
 
-// Encrypt/Decrypt on writing
-el.input.addEventListener('input', () => {
-  const content = el.input.value
-  el.error.innerText = ''
-  if (content === '') {
-    el.copyOutput.style.visibility = 'hidden'
-    return
-  }
-  el.copyOutput.style.visibility = 'visible'
+// Encrypt/Decrypt on input writing
+el.input.addEventListener('input', setup)
 
-  const password = el.password.value
-  const action = el.action.value
-
-  if (action === 'encrypt') el.output.value = encrypt(content, password)
-  else if (action === 'decrypt') {
-    try {
-      el.output.value = decrypt(content, password)
-    }
-    catch (err) {
-      el.error.innerText = err.message
-      console.error(err)
-    }
-  }
-})
+// Encrypt/Decrypt on password writing
+el.password.addEventListener('input', setup)
 
 // Set the output as read only. "readonly" attribute hides the text cursor
 el.output.addEventListener('keypress', e => e.preventDefault())
