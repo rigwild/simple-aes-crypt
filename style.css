@@ -2,11 +2,15 @@
   font-family: Arial;
   color: #f4f4f4;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 body {
   background-color: #272525;
   max-width: 700px;
   margin: 35px auto;
+}
+::selection {
+  background: #f5c478;
 }
 label {
   display: block;
@@ -15,7 +19,7 @@ label {
 div {
   padding: 10px 0;
 }
-input, select {
+input, select, button {
   background-color: #3e3e3e;
   border: none;
   padding: 10px;
@@ -33,8 +37,18 @@ textarea {
 #error {
   color: #e66060;
 }
-
 #github {
   text-align: right;
   font-style: italic;
+}
+#output-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+button {
+  cursor: pointer;
+}
+#copyOutput {
+  visibility: hidden;
 }

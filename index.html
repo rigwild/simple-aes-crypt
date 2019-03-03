@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
   <h1>Simple AES Crypt</h1>
@@ -27,13 +28,18 @@
   </div>
 
   <div>
-    <label for="output">Your output</label>
+    <div id="output-title">
+      <label for="output">Your output</label>
+      <button id="copyOutput">Copy to clipboard</button>
+    </div>
     <textarea placeholder="Output..." id="output"></textarea>
   </div>
 
   <div id="error"></div>
 
-  <div id="github"><a href="" target="_blank" rel="noopener">Available on Github</a></div>
+  <div id="github">
+    <a href="https://github.com/rigwild/simple-aes-crypt" target="_blank" rel="noopener">Available on Github</a>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js" type="text/javascript"></script>
   <script src="script.js" type="text/javascript"></script>

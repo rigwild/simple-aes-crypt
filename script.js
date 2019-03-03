@@ -9,12 +9,15 @@ const decrypt = (crypted, password) => {
   catch (e) { throw new Error('Data could not be decrypted.') }
 }
 
+const delay = ms => new Promise(res => setTimeout(res, ms))
+
 const cachedActionKey = 'crypto-action'
 const el = {
   action: document.getElementById('action'),
   password: document.getElementById('password'),
   input: document.getElementById('input'),
   output: document.getElementById('output'),
+  copyOutput: document.getElementById('copyOutput'),
   error: document.getElementById('error')
 }
 
@@ -37,7 +40,11 @@ el.action.addEventListener('change', e => {
 el.input.addEventListener('input', () => {
   const content = el.input.value
   el.error.innerText = ''
-  if (content === '') return
+  if (content === '') {
+    el.copyOutput.style.visibility = 'hidden'
+    return
+  }
+  el.copyOutput.style.visibility = 'visible'
 
   const password = el.password.value
   const action = el.action.value
@@ -56,3 +63,11 @@ el.input.addEventListener('input', () => {
 
 // Set the output as read only. "readonly" attribute hides the text cursor
 el.output.addEventListener('keypress', e => e.preventDefault())
+
+// Copy the output to clipboard
+el.copyOutput.addEventListener('click', () => {
+  el.output.select()
+  document.execCommand("copy")
+  el.copyOutput.innerText = 'Copied to clipboard!'
+  delay(1200).then(() => (el.copyOutput.innerText = 'Copy to clipboard'))
+})
