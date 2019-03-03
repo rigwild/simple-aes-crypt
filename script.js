@@ -14,6 +14,7 @@ const setup = () => {
   const content = el.input.value
   el.error.innerText = ''
   if (content === '') {
+    el.output.value = ''
     el.copyOutput.style.visibility = 'hidden'
     return
   }
