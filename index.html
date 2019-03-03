@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crypto-JS AES encryption</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Simple AES Crypt</h1>
+  <div>
+    <label for="action">Action</label>
+    <select id="action">
+      <option value="encrypt">Encrypt</option>
+      <option value="decrypt">Decrypt</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="text" placeholder="Password..." id="password" />
+  </div>
+
+  <div>
+    <label for="input">Your input</label>
+    <textarea placeholder="Input..." id="input"></textarea>
+  </div>
+
+  <div>
+    <label for="output">Your output</label>
+    <textarea placeholder="Output..." id="output"></textarea>
+  </div>
+
+  <div id="error"></div>
+
+  <div id="github"><a href="" target="_blank" rel="noopener">Available on Github</a></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js" type="text/javascript"></script>
+  <script src="script.js" type="text/javascript"></script>
+</body>
+</html>
